@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acting for Dancers | Premier Ballet Academy</title>
+    <meta name="description" content="Professional Acting Classes for Children by Yasser Farag">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --gold-dim: #7a5f28;
+            --cream: #f5edd6;
+            --ink: #080604;
+            --smoke: #131008;
+            --charcoal: #0f0c08;
+            --soft: #b8a88a;
+        }
+
+        html {
+            background: var(--ink);
+            font-family: 'Cairo', sans-serif;
+            color: var(--cream);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* Film Grain Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.4"/></svg>');
+            background-size: auto;
+            pointer-events: none;
+            z-index: 9000;
+            opacity: 0.4;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 8000;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(10, 8, 4, 0.85);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        html[dir="rtl"] .language-toggle {
+            right: auto;
+            left: 2rem;
+        }
+
+        .lang-btn {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 0.45rem 1rem;
+            background: transparent;
+            color: var(--soft);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--ink);
+        }
+
+        /* Scroll Reveal */
+        .reveal, .reveal-left, .reveal-right {
+            opacity: 0;
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal {
+            transform: translateY(32px);
+        }
+
+        .reveal-left {
+            transform: translateX(-32px);
+        }
+
+        .reveal-right {
+            transform: translateX(32px);
+        }
+
+        .reveal.visible, .reveal-left.visible, .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.32s; }
+        .delay-4 { transition-delay: 0.46s; }
+        .delay-5 { transition-delay: 0.62s; }
+        .delay-6 { transition-delay: 0.80s; }
+
+        /* Section Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SECTION 1 — HERO
+           ═════════════════════════════════════════════════════════════════════ */
+        
+        .section-hero {
+            min-height: 100vh;
+            background: var(--ink);
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 55% 45%;
+        }
+
+        html[dir="ltr"] .section-hero {
+            grid-template-columns: 45% 55%;
+        }
+
+        /* Breathing atmosphere */
+        .section-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(201, 168, 76, 0.09) 0%, transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(201, 168, 76, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: breathing 9s ease-in-out infinite;
+        }
+
+        @keyframes breathing {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Curtain lines */
+        .section-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(201, 168, 76, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 168, 76, 0.10) 1px, transparent 1px);
+            background-size: 12.5% 100%, 12.5% 100%;
+            background-position: 0 0, 6.25% 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-left {
+            padding: 7rem 3.5rem 5rem 5rem;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        html[dir="ltr"] .hero-left {
+            padding: 7rem 5rem 5rem 3.5rem;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-eyebrow-line {
+            width: 36px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold-dim));
+        }
+
+        .hero-eyebrow-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .academy-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            font-size: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-name {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3.8rem, 8.5vw, 8rem);
+            background: linear-gradient(145deg, var(--gold-light) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        html[dir="ltr"] .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(2.8rem, 6vw, 6rem);
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--soft);
+            letter-spacing: 0.12em;
+            font-size: 0.95rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold-dim));
+            max-width: 30px;
+        }
+
+        .hero-divider-diamond {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+
+        .hero-description {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 300;
+            line-height: 1.95;
+            color: var(--cream);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-description strong {
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--soft);
+            font-size: 0.88rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .pill {
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 0.38rem 0.85rem;
+            color: var(--gold);
+            font-size: 0.76rem;
+            background: rgba(201, 168, 76, 0.04);
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .pill:hover {
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .hero-date-strip {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1.2rem;
+            gap: 0.65rem;
+            margin-bottom: 2.5rem;
+            border-radius: 2px;
+        }
+
+        .hero-date-strip-text {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border-radius: 2px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--ink);
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateX(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            color: var(--gold);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(201, 168, 76, 0.08);
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            filter: grayscale(15%) contrast(1.06);
+        }
+
+        .hero-image-overlay-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--ink), transparent);
+            z-index: 10;
+        }
+
+        html[dir="ltr"] .hero-image-overlay-left {
+            left: auto;
+            right: 0;
+            background: linear-gradient(90deg, transparent, var(--ink));
+        }
+
+        .hero-image-overlay-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 35%;
+            background: linear-gradient(180deg, transparent, var(--ink));
+            z-index: 11;
+        }
+
+        .hero-image-tint {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(201, 168, 76, 0.045);
+            z-index: 12;
+        }
+
+        /* Mobile Hero */
+        @media (max-width: 1024px) {
+            .section-hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            html[dir="ltr"] .section-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                height: 62vw;
+                order: -1;
+            }
+
+            .hero-left {
+                padding: 4rem 2rem;
+            }
+
+            html[dir="ltr"] .hero-left {
+                padding: 4rem 2rem;
+            }
+
+            .hero-name {
+                font-size: clamp(2.5rem, 7vw, 4.5rem);
+            }
+
+            .hero-cta-row {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SECTION 2 — CAROUSEL
+           ═════════════════════════════════════════════════════════════════════ */
+        
+        .section-carousel {
+            background: var(--smoke);
+            padding: 5rem 2rem 4rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .carousel-label {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-size: 0.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .carousel-stage {
+            width: 100%;
+            height: 340px;
+            position: relative;
+            perspective: 900px;
+            margin: 0 auto 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-belt {
+            width: 260px;
+            height: 320px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 260px;
+            height: 320px;
+            left: 50%;
+            top: 50%;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            margin-left: -130px;
+            margin-top: -160px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(25%) contrast(1.08);
+        }
+
+        .carousel-item.active img {
+            filter: grayscale(0%) contrast(1.12);
+        }
+
+        .carousel-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, transparent, var(--ink));
+            z-index: 5;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .carousel-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            background: rgba(201, 168, 76, 0.05);
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(201, 168, 76, 0.15);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(201, 168, 76, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.4);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SECTION 3 — OUTCOMES
+           ═════════════════════════════════════════════════════════════════════ */
+        
+        .section-outcomes {
+            background: var(--charcoal);
+            padding: 7rem 2rem;
+            text-align: center;
+            max-width: 1050px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+        }
+
+        .outcomes-eyebrow {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--soft);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .outcomes-heading {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 4vw, 2.8rem);
+            color: var(--cream);
+            margin-bottom: 3rem;
+            line-height: 1.3;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2px;
+        }
+
+        .outcome-card {
+            background: rgba(201, 168, 76, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            padding: 2.5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            background: rgba(201, 168, 76, 0.07);
+        }
+
+        .outcome-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: var(--gold);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .outcome-card:hover::after {
+            width: 60%;
+        }
+
+        .outcome-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 3.2rem;
+            color: rgba(201, 168, 76, 0.12);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .outcome-title {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .outcome-body {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--soft);
+            font-size: 0.9rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SECTION 4 — FEATURE
+           ═════════════════════════════════════════════════════════════════════ */
+        
+        .section-feature {
+            background: var(--smoke);
+            padding: 7rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .feature-image-wrapper {
+            position: relative;
+        }
+
+        .feature-image {
+            width: 100%;
+            filter: grayscale(15%) contrast(1.06);
+        }
+
+        .feature-image-frame::before {
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: 14px;
+            right: -14px;
+            bottom: 14px;
+            border: 1px solid rgba(201, 168, 76, 0.22);
+            z-index: -1;
+        }
+
+        .feature-image-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(180deg, transparent, var(--ink));
+            z-index: 10;
+        }
+
+        .feature-text-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+            line-height: 1.6;
+            color: var(--cream);
+            margin-bottom: 2rem;
+        }
+
+        .feature-quote strong {
+            color: var(--gold);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .feature-body {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 300;
+            line-height: 1.92;
+            color: var(--soft);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-body strong {
+            color: var(--cream);
+            font-weight: 600;
+        }
+
+        .age-tag {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            padding: 0.42rem 1.1rem;
+            color: var(--gold);
+            font-size: 0.85rem;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 1024px) {
+            .feature-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-image-wrapper {
+                order: -1;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SECTION 5 — REGISTRATION FORM
+           ═════════════════════════════════════════════════════════════════════ */
+        
+        .section-register {
+            background: var(--charcoal);
+            padding: 7rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .register-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .register-heading {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .register-subheading {
+            text-align: center;
+            color: var(--soft);
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            color: var(--cream);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder,
+        .form-select {
+            color: var(--soft);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            color: var(--cream);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            border-radius: 2px;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .form-checkbox input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--gold);
+        }
+
+        .form-checkbox label {
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--soft);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gold);
+            color: var(--ink);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+        }
+
+        .btn-submit:hover {
+            background: var(--gold-light);
+            transform: translateX(-2px);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            padding: 1.5rem;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-light);
+            text-align: center;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 8, 4, 0.6);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--soft);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 3;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gold-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="ar">ع</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECTION 1 — HERO
+         ═════════════════════════════════════════════════════════════════════ -->
+    <section class="section-hero">
+        <div class="hero-left reveal-left">
+            <div class="hero-eyebrow">
+                <div class="hero-eyebrow-line"></div>
+                <span class="hero-eyebrow-text" data-ar="تُعلن بكل فخر" data-en="Proudly Announces">تُعلن بكل فخر</span>
+                <div class="hero-eyebrow-line"></div>
+            </div>
+
+            <div class="academy-label" data-ar="Premier Ballet Academy · برنامج التمثيل" data-en="Premier Ballet Academy · Acting Program">
+                Premier Ballet Academy · برنامج التمثيل
+            </div>
+
+            <h1 class="hero-name reveal delay-1" data-ar="ياسر فرج" data-en="Yasser Farag">ياسر فرج</h1>
+
+            <p class="hero-subtitle reveal delay-2" data-ar="ياسر فرج · النجم المصري" data-en="Yasser Farag · Egyptian Actor">
+                ياسر فرج · النجم المصري
+            </p>
+
+            <div class="hero-divider reveal delay-3">
+                <div class="hero-divider-line"></div>
+                <div class="hero-divider-diamond"></div>
+                <div class="hero-divider-line"></div>
+            </div>
+
+            <p class="hero-description reveal delay-3">
+                <span data-ar="يقدّم كلاسات " data-en="Leading ">يقدّم كلاسات </span>
+                <strong data-ar="التمثيل الاحترافية للأطفال" data-en="Professional Acting Classes for Children">التمثيل الاحترافية للأطفال</strong>
+                <span data-ar=" — رحلة فنية حقيقية نحو الثقة بالنفس، الشخصية القوية، والقدرة على التعبير." data-en=" — a real artistic journey toward self-confidence, a strong personality, and expressive power."> — رحلة فنية حقيقية نحو الثقة بالنفس، الشخصية القوية، والقدرة على التعبير.</span>
+            </p>
+
+            <p class="hero-sub reveal delay-4" data-ar="Professional Acting & Performance Workshop · 3-Month Intensive" data-en="Professional Acting & Performance Workshop · 3-Month Intensive">
+                Professional Acting & Performance Workshop · 3-Month Intensive
+            </p>
+
+            <div class="hero-pills reveal delay-4">
+                <span class="pill" data-ar="تمارين الإحماء" data-en="Warm-Up Drills">تمارين الإحماء</span>
+                <span class="pill" data-ar="تدريبات التركيز" data-en="Focus Training">تدريبات التركيز</span>
+                <span class="pill" data-ar="تمارين الخيال" data-en="Imagination Exercises">تمارين الخيال</span>
+                <span class="pill" data-ar="التعبير الانفعالي" data-en="Emotional Expression">التعبير الانفعالي</span>
+                <span class="pill" data-ar="بناء الشخصية" data-en="Character Building">بناء الشخصية</span>
+            </div>
+
+            <div class="hero-date-strip reveal delay-5">
+                <span style="font-size: 1.2rem;">🚀</span>
+                <span class="hero-date-strip-text" data-ar="تبدأ الفصول أول مايو 2025" data-en="Classes Begin May 1st, 2025">تبدأ الفصول أول مايو 2025</span>
+            </div>
+
+            <div class="hero-cta-row reveal delay-5">
+                <button class="btn btn-primary" onclick="document.getElementById('register').scrollIntoView({ behavior: 'smooth' })" data-ar="سجّل الآن" data-en="Register Now">سجّل الآن</button>
+                <a href="https://www.premierballetacademy.org" target="_blank" class="btn btn-secondary" data-ar="موقع الأكاديمية" data-en="Academy Website">موقع الأكاديمية</a>
+            </div>
+        </div>
+
+        <div class="hero-right reveal-right">
+            <img src="https://ik.imagekit.io/xtj3m9hth/Yasser2.png" alt="Yasser Farag" class="hero-image">
+            <div class="hero-image-overlay-left"></div>
+            <div class="hero-image-overlay-bottom"></div>
+            <div class="hero-image-tint"></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECTION 2 — CAROUSEL
+         ═════════════════════════════════════════════════════════════════════ -->
+    <section class="section-carousel">
+        <div class="carousel-label reveal" data-ar="لقطات من الفصول الدراسية" data-en="Live from the Classes">لقطات من الفصول الدراسية</div>
+
+        <div class="carousel-stage">
+            <div class="carousel-belt" id="carouselBelt">
+                <div class="carousel-item active" style="transform: rotateY(0deg) translateZ(420px);">
+                    <img src="https://ik.imagekit.io/xtj3m9hth/IMG_9672.HEIC" alt="Class moment 1">
+                </div>
+                <div class="carousel-item" style="transform: rotateY(90deg) translateZ(420px);">
+                    <img src="https://ik.imagekit.io/xtj3m9hth/IMG_9653.HEIC" alt="Class moment 2">
+                </div>
+                <div class="carousel-item" style="transform: rotateY(180deg) translateZ(420px);">
+                    <img src="https://ik.imagekit.io/xtj3m9hth/IMG_9706.HEIC" alt="Class moment 3">
+                </div>
+                <div class="carousel-item" style="transform: rotateY(270deg) translateZ(420px);">
+                    <img src="https://ik.imagekit.io/xtj3m9hth/IMG_9602.HEIC" alt="Class moment 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn" onclick="prevCarousel()">←</button>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+            </div>
+            <button class="carousel-btn" id="nextBtn" onclick="nextCarousel()">→</button>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECTION 3 — OUTCOMES
+         ═════════════════════════════════════════════════════════════════════ -->
+    <section class="section-outcomes">
+        <p class="outcomes-eyebrow reveal" data-ar="ماذا يكسب طفلك؟" data-en="What Every Child Gains">ماذا يكسب طفلك؟</p>
+        <h2 class="outcomes-heading reveal delay-1" data-ar="ثلاثة مكاسب تغيّر مساره الفني" data-en="Three Outcomes That Change Everything">ثلاثة مكاسب تغيّر مساره الفني</h2>
+
+        <div class="outcomes-grid">
+            <div class="outcome-card reveal delay-2">
+                <div class="outcome-number">01</div>
+                <h3 class="outcome-title" data-ar="ثقة عالية بالنفس" data-en="Unshakeable Confidence">ثقة عالية بالنفس</h3>
+                <p class="outcome-body" data-ar="بيئة تدريبية آمنة تُخرج أفضل ما في كل طفل وتجعله يقف أمام الكاميرا والجمهور بثقة حقيقية." data-en="A safe training environment that draws out every child's best and builds the courage to perform in front of any audience.">بيئة تدريبية آمنة تُخرج أفضل ما في كل طفل وتجعله يقف أمام الكاميرا والجمهور بثقة حقيقية.</p>
+            </div>
+
+            <div class="outcome-card reveal delay-3">
+                <div class="outcome-number">02</div>
+                <h3 class="outcome-title" data-ar="شخصية قوية وحضور" data-en="Strong Personality & Presence">شخصية قوية وحضور</h3>
+                <p class="outcome-body" data-ar="تمارين موجّهة لبناء الحضور الشخصي والتعبير الصادق عن المشاعر بأسلوب احترافي." data-en="Targeted exercises that build personal presence and honest emotional expression with a professional edge.">تمارين موجّهة لبناء الحضور الشخصي والتعبير الصادق عن المشاعر بأسلوب احترافي.</p>
+            </div>
+
+            <div class="outcome-card reveal delay-4">
+                <div class="outcome-number">03</div>
+                <h3 class="outcome-title" data-ar="الإحساس بالمسؤولية" data-en="A Sense of Responsibility">الإحساس بالمسؤولية</h3>
+                <p class="outcome-body" data-ar="يتعلم الطفل الالتزام والانضباط اللذَين يُعدّانه لبيئات الأداء الحقيقية على المسرح والشاشة." data-en="Children learn commitment and discipline that prepare them for real performance environments on stage and screen.">يتعلم الطفل الالتزام والانضباط اللذَين يُعدّانه لبيئات الأداء الحقيقية على المسرح والشاشة.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECTION 4 — FEATURE
+         ═════════════════════════════════════════════════════════════════════ -->
+    <section class="section-feature">
+        <div class="feature-container">
+            <div class="feature-image-wrapper feature-image-frame reveal-left">
+                <img src="https://ik.imagekit.io/xtj3m9hth/Yasser1.png" alt="Yasser Farag teaching" class="feature-image">
+            </div>
+
+            <div class="reveal-right">
+                <p class="feature-text-eyebrow reveal" data-ar="عن البرنامج" data-en="About the Program">عن البرنامج</p>
+
+                <blockquote class="feature-quote reveal delay-1">
+                    <span data-ar="الحركة لا معنى لها بدون " data-en="Movement means nothing without ">الحركة لا معنى لها بدون </span>
+                    <strong data-ar="المشاعر الحقيقية" data-en="real emotion">المشاعر الحقيقية</strong>
+                    <span data-ar="." data-en=".">.</span>
+                </blockquote>
+
+                <p class="feature-body reveal delay-2">
+                    <span data-ar="يجمع البرنامج بين عالمَي " data-en="The program bridges ">يجمع البرنامج بين عالمَي </span>
+                    <strong data-ar="الباليه والدراما" data-en="ballet and drama">الباليه والدراما</strong>
+                    <span data-ar=" لأول مرة تحت سقف واحد — تجربة فنية متكاملة يقودها النجم المصري ياسر فرج في أكاديمية Premier Ballet Academy.
+                    البرنامج المكثّف لمدة 3 أشهر مُصمَّم لصقل التركيز، وبناء الثقة التي لا تتزعزع، وإتقان لغة الجسد — تحويل المهارة التقنية إلى أداء آسر لا يُنسى." data-en=" for the first time under one roof — a complete artistic experience led by Egyptian actor Yasser Farag at Premier Ballet Academy.
+                    This 3-month intensive is designed to sharpen focus, build unshakeable confidence, and master the language of the body — transforming technical skill into a captivating, unforgettable performance."> لأول مرة تحت سقف واحد — تجربة فنية متكاملة يقودها النجم المصري ياسر فرج في أكاديمية Premier Ballet Academy.
+                    البرنامج المكثّف لمدة 3 أشهر مُصمَّم لصقل التركيز، وبناء الثقة التي لا تتزعزع، وإتقان لغة الجسد — تحويل المهارة التقنية إلى أداء آسر لا يُنسى.</span>
+                </p>
+
+                <div class="age-tag reveal delay-3" data-ar="المجموعات العمرية: من 8 إلى 20 سنة" data-en="Age Groups: 8 to 20 years old">
+                    <span data-ar="المجموعات العمرية: من 8 إلى 20 سنة" data-en="Age Groups: 8 to 20 years old">المجموعات العمرية: من 8 إلى 20 سنة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECTION 5 — REGISTRATION FORM
+         ═════════════════════════════════════════════════════════════════════ -->
+    <section class="section-register" id="register">
+        <div class="register-container">
+            <h2 class="register-heading reveal" data-ar="سجّل طفلك الآن" data-en="Register Your Child">سجّل طفلك الآن</h2>
+            <p class="register-subheading reveal delay-1" data-ar="انضم إلى برنامج التمثيل الاحترافي مع ياسر فرج" data-en="Join the Professional Acting Program with Yasser Farag">انضم إلى برنامج التمثيل الاحترافي مع ياسر فرج</p>
+
+            <div class="success-message" id="successMessage" data-ar="تم استقبال طلبك بنجاح! شكراً لك." data-en="Your registration was successful! Thank you.">
+                تم استقبال طلبك بنجاح! شكراً لك.
+            </div>
+
+            <form id="registrationForm" onsubmit="submitForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" data-ar="اسم الولي" data-en="Parent Name">اسم الولي</label>
+                        <input type="text" class="form-input" name="parentName" required data-placeholder-ar="أدخل اسم الولي" data-placeholder-en="Enter parent name" placeholder="أدخل اسم الولي">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</label>
+                        <input type="tel" class="form-input" name="phone" required data-placeholder-ar="أدخل رقم الهاتف" data-placeholder-en="Enter phone number" placeholder="أدخل رقم الهاتف">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" data-ar="اسم الطفل" data-en="Child Name">اسم الطفل</label>
+                        <input type="text" class="form-input" name="childName" required data-placeholder-ar="أدخل اسم الطفل" data-placeholder-en="Enter child's name" placeholder="أدخل اسم الطفل">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-ar="عمر الطفل" data-en="Child Age">عمر الطفل</label>
+                        <input type="number" class="form-input" name="childAge" min="8" max="20" required data-placeholder-ar="أدخل عمر الطفل" data-placeholder-en="Enter child's age" placeholder="أدخل عمر الطفل">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" name="email" required data-placeholder-ar="أدخل البريد الإلكتروني" data-placeholder-en="Enter email address" placeholder="أدخل البريد الإلكتروني">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-ar="الفرع" data-en="Branch">الفرع</label>
+                    <select class="form-select" name="branch" required>
+                        <option value="" disabled selected data-ar="اختر الفرع" data-en="Select a branch">اختر الفرع</option>
+                        <option value="New Cairo" data-ar="القاهرة الجديدة" data-en="New Cairo">القاهرة الجديدة</option>
+                        <option value="Maadi" data-ar="المعادي" data-en="Maadi">المعادي</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-ar="اللغة المفضلة" data-en="Preferred Language">اللغة المفضلة</label>
+                    <select class="form-select" name="language" required>
+                        <option value="" disabled selected data-ar="اختر اللغة" data-en="Select a language">اختر اللغة</option>
+                        <option value="Arabic" data-ar="العربية" data-en="Arabic">العربية</option>
+                        <option value="English" data-ar="الإنجليزية" data-en="English">الإنجليزية</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-ar="ملاحظات إضافية (اختياري)" data-en="Additional Notes (Optional)">ملاحظات إضافية (اختياري)</label>
+                    <textarea class="form-textarea" name="notes" data-placeholder-ar="أي معلومات إضافية تود إضافتها؟" data-placeholder-en="Any additional information?"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" data-ar="أرسل الطلب" data-en="Submit Registration">أرسل الطلب</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p data-ar="جميع الحقوق محفوظة © 2025 Premier Ballet Academy · Acting for Dancers" data-en="All Rights Reserved © 2025 Premier Ballet Academy · Acting for Dancers">
+            جميع الحقوق محفوظة © 2025 Premier Ballet Academy · Acting for Dancers
+        </p>
+        <p style="margin-top: 1rem;">
+            <a href="https://www.premierballetacademy.org" target="_blank" data-ar="زيارة موقع الأكاديمية" data-en="Visit Academy Website">زيارة موقع الأكاديمية</a>
+        </p>
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════════
+        // LANGUAGE TOGGLE
+        // ═════════════════════════════════════════════════════════════════════
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const savedLang = localStorage.getItem('pba-lang') || 'ar';
+
+        function setLanguage(lang) {
+            const html = document.documentElement;
+            html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            html.lang = lang;
+
+            // Update button states
+            langBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update text content
+            document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+                const text = lang === 'ar' ? el.dataset.ar : el.dataset.en;
+                el.textContent = text;
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-ar][data-placeholder-en]').forEach(el => {
+                const placeholder = lang === 'ar' ? el.dataset.placeholderAr : el.dataset.placeholderEn;
+                el.placeholder = placeholder;
+            });
+
+            localStorage.setItem('pba-lang', lang);
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+        });
+
+        // Initialize language on load
+        setLanguage(savedLang);
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // SCROLL REVEAL
+        // ═════════════════════════════════════════════════════════════════════
+
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealOptions = {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // CAROUSEL
+        // ═════════════════════════════════════════════════════════════════════
+
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoplayInterval;
+
+        function updateCarousel() {
+            const angle = currentSlide * 90;
+            document.getElementById('carouselBelt').style.transform = `rotateY(${-angle}deg)`;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+
+            // Update active item
+            document.querySelectorAll('.carousel-item').forEach((item, i) => {
+                item.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function nextCarousel() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function prevCarousel() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            autoplayInterval = setInterval(nextCarousel, 3800);
+        }
+
+        // Initialize carousel
+        updateCarousel();
+        resetAutoplay();
+
+        // Touch swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const stage = document.querySelector('.carousel-stage');
+        stage.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        stage.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (Math.abs(touchStartX - touchEndX) > 40) {
+                if (touchStartX > touchEndX) nextCarousel();
+                else prevCarousel();
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // FORM SUBMISSION
+        // ═════════════════════════════════════════════════════════════════════
+
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('registrationForm');
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            // Convert to object
+            const data = Object.fromEntries(formData);
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ ' + (document.documentElement.lang === 'ar' ? 'جاري الإرسال...' : 'Submitting...');
+
+                const response = await fetch(
+                    'https://script.google.com/macros/s/AKfycbygZuaUaVM9OOUP6_4cH4k5aXiFy55cUpyF7HF0sAb9Kq99F5QTTSdziAXY1EGm_z2-WA/exec',
+                    {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                if (response.ok) {
+                    // Show success message
+                    const successMsg = document.getElementById('successMessage');
+                    successMsg.classList.add('show');
+
+                    // Reset form
+                    form.reset();
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.classList.remove('show');
+                    }, 5000);
+
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = document.documentElement.lang === 'ar' ? 'أرسل الطلب' : 'Submit Registration';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert(document.documentElement.lang === 'ar' ? 'حدث خطأ. يرجى المحاولة مجددًا.' : 'An error occurred. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = document.documentElement.lang === 'ar' ? 'أرسل الطلب' : 'Submit Registration';
+            }
+        }
+    </script>
+</body>
+</html>
